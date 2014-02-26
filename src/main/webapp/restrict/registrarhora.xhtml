@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tarefas">
+        <p:fieldset legend="Registro de Horas">
+            <br/>
+            <h:form>
+                <p:growl id="msg0"/>
+                <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0" >
+                    <h:outputLabel for="funcionario" value="Funcionário:"/>
+                    <p:selectOneMenu id="funcionario" value="#{mbHora.hora.funcionario.idFuncionario}" filter="true" filterMatchMode="startsWith" effect="fade">
+                        <f:selectItems value="#{bbFuncionario.funcionarios2}" var="funcionario" itemValue="#{funcionario.idFuncionario}" itemLabel="#{funcionario.nome}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="data" value="Data:"/>
+                    <p:calendar id="data" value="#{mbHora.hora.dataRegistro}"
+                                required="true" requiredMessage="O campo [Data] é obrigatório"
+                                locale="pt_BR" navigator="true" effect="explode" pattern="dd/MM/yyyy"/>
+
+
+                    <h:outputLabel for="tipo" value="Tipo:"/>
+                    <p:selectOneMenu id="tipo" value="#{mbHora.hora.tipo}" effect="fade">
+                        <f:selectItem itemValue="C"  itemLabel="Banco de Horas (Crédito)"/>
+                        <f:selectItem itemValue="D"  itemLabel="Á Compensar (Débito)"/>
+                    </p:selectOneMenu>    
+
+                    <h:outputLabel for="hora" value="Horas:"/>
+                    <p:inputMask id="hora" value="#{mbHora.hora.tempoMinutos}" mask="99:99" converter="converterHoraMinutos" required="true" requiredMessage="O campo [Hora] é obrigatório" />  
+
+                    <h:outputLabel for="motivo" value="Motivo:"/>
+                    <p:inputTextarea id="motivo" value="#{mbHora.hora.motivo}" rows="5" cols="30" counter="counter" maxlength="500"       
+                                     counterTemplate="Restam {0} caracteres." autoResize="false" required="true" requiredMessage="O campo [Motivo] é obrigatório"/> 
+                    <h:outputText/> 
+                    <h:outputText id="counter" />  
+
+
+                    <p:panel>
+                        <p:commandButton value="Salvar" action="#{mbHora.addHora}"
+                                         image="ui-icon ui-icon-disk" update="@form" ajax="false" />
+                        <p:commandButton value="Cancelar" actionListener="#{mbHora.limpHora}" 
+                                         image="ui-icon ui-icon-close" update="@form"/>
+                    </p:panel>
+
+                </h:panelGrid>   
+            </h:form>
+        </p:fieldset>       
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tarefas">
+        <p:fieldset legend="Cadastrar Usuários">
+            <br/>
+
+            <h:form>
+                <p:growl id="msg0"/>
+
+                <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0" >
+                    <h:outputLabel/>
+                    <h:inputHidden id="idusuario" value="#{mbUsuario.usuario.idUsuario}"/>
+
+                    <h:outputLabel for="nomeUsuario" value="Nome:" />
+                    <p:inputText id="nomeUsuario" size="40" value="#{mbUsuario.usuario.nome}"
+                                 required="true" requiredMessage="O campo [Nome] é obrigatório"
+                                 onkeyup="this.value = this.value.toUpperCase()" />
+
+                    <h:outputLabel for="usuarioSetor" value="Setor:"/>
+                    <p:selectOneMenu id="usuarioSetor" value="#{mbUsuario.usuario.setor.idSetor}">
+                        <f:selectItems value="#{bbSetor.setores}" var="setor" itemValue="#{setor.idSetor}" itemLabel="#{setor.setor}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="respsetor" value="Responsável de Setor:"/>
+                    <p:selectOneMenu id="respsetor" value="#{mbUsuario.usuario.respSetor}">
+                        <f:selectItem itemValue="N"  itemLabel="Não"/>
+                        <f:selectItem itemValue="S"  itemLabel="Sim"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="permissao" value="Permissão:"/>
+                    <p:selectOneMenu id="permissao" value="#{mbUsuario.usuario.permissao}">
+                        <f:selectItem itemValue="ROLE_USER"  itemLabel="Usuário"/>
+                        <f:selectItem itemValue="ROLE_ADMIN"  itemLabel="Administrador"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="loginUsuario" value="Usuário:" />
+                    <p:inputText id="loginUsuario" size="40" value="#{mbUsuario.usuario.usuario}"
+                                 required="true" requiredMessage="O campo [Usuário] é obrigatório"
+                                 onkeyup="this.value = this.value.toUpperCase()" />
+
+
+                    <h:outputLabel for="senha" value="Senha.:" />
+                    <p:password id="senha" size="30" maxlength="22" promptLabel="Digite sua Senha" value="#{mbUsuario.confereSenha}"
+                                weakLabel="Senha Fraca" goodLabel="Senha Boa" strongLabel="Senha Forte" feedback="true"/> 
+
+                    <h:outputLabel for="senhaconf2" value="Confirmar Senha.:"/>
+                    <p:password id="senhaconf2" size="30" value="#{mbUsuario.usuario.senha}" maxlength="22"   
+                                promptLabel="Confirme sua Senha" weakLabel="Senha Fraca" 
+                                converter="converterSHA1" goodLabel="Senha Boa" strongLabel="Senha Forte" feedback="true">
+                    </p:password>  
+
+                    <p:panel>
+                        <p:commandButton value="Salvar" action="#{mbUsuario.addUsuario}"
+                                         image="ui-icon ui-icon-disk" update="@form" ajax="false"/>
+                        <p:commandButton value="Cancelar" actionListener="#{mbUsuario.limpUsuario}" 
+                                         image="ui-icon ui-icon-close" update="@form"/>
+                    </p:panel>
+
+                </h:panelGrid>              
+
+            </h:form>
+
+
+
+        </p:fieldset>
+
+
+
+    </ui:define>
+</ui:composition>

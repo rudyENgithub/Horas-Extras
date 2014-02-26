@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      ><!-- xmlns:sec="http://www.springframework.org/security/facelets/tags" -->
+
+    <h:head>
+        <title>ABSoft - Comercial</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            /*Altera o tamanho da fonte*/
+            .ui-widget {  
+                font-size: 11px !important;
+            }
+
+            /*deixa o cabeçalho sempre visível*/
+            .ui-layout-north {
+                z-index:20 !important;
+                overflow:visible !important;
+            }
+
+            .ui-layout-north .ui-layout-unit-content {
+                overflow:visible !important;
+            }
+
+
+            /*Tira a borda */
+            .ui-layout-north{
+                border: 0px;
+            }
+            .ui-layout-south{
+                border: 0px;
+            }
+
+            .ui-layout-west{
+                border: 0px;
+            }
+
+            #cabecalho {
+                background:#f5f5f5 url(#{facesContext.externalContext.requestContextPath}/resources/images/main_header_pg.png) right top no-repeat;
+                border: 0px solid #F00;
+                margin: 0px auto;
+                
+            }
+
+
+        </style>
+
+    </h:head>
+
+    <h:body>
+
+        <p:layout fullPage="true" >
+
+            <p:layoutUnit position="north" size="97" resizable="true" closable="false" collapsible="false">
+                <div id="cabecalho">
+                    <img src="#{facesContext.externalContext.requestContextPath}/resources/images/logo.png"/>
+                </div>
+
+
+                <h:form>  
+
+                    <p:menubar>  
+
+                        <p:submenu label="Pesquisas" icon="ui-icon-search">  
+                            <p:menuitem value="Banco de Horas" url="/restrict/horaextra.jsf" icon ="ui-icon-clock"/> 
+                            <p:menuitem value="Funcionários" url="/restrict/consultarfuncionarios.jsf" icon ="ui-icon-person" />  
+                            <p:menuitem value="Usuarios" url="/restrict/consultarusuarios.jsf" icon ="ui-icon-locked" disabled="#{bbSetor.campoAtivado}" />
+                        </p:submenu>  
+
+                        <p:submenu label="Cadastros" icon="ui-icon-document">                         
+
+                            <p:menuitem value="Lançar Hora" action="#{mbHora.limpHora()}" icon ="ui-icon-clock" ajax="false"/> 
+                            <p:menuitem value="Novo Funcionário" action="#{mbFuncionario.limpFuncionario()}" icon ="ui-icon-person" ajax="false"/>  
+                            <p:menuitem value="Novo Usuario" action="#{mbUsuario.limpUsuario()}" icon ="ui-icon-locked" ajax="false" disabled="#{bbSetor.campoAtivado}"/>
+
+                            <p:separator />
+
+                            <p:submenu label="Tabelas" icon="ui-icon-folder-collapsed">  
+                                <p:menuitem value="Setores" url="/restrict/cadastrarsetor.jsf" />
+                            </p:submenu>  
+
+
+                        </p:submenu>  
+
+                        <p:submenu label="Relatórios" icon="ui-icon-clipboard">  
+                            <p:menuitem value="Gráficos" url="/restrict/home.jsf" icon="ui-icon-signal" />   
+                        </p:submenu>    
+
+                        <p:submenu label="Ajuda" icon="ui-icon-help">  
+                            <p:menuitem value="Sobre o Sistema" onclick="dlg3.show();" />  
+                        </p:submenu>  
+
+                        <f:facet name="options"> 
+                            <h:outputText value="SEJA BEM VINDO(A) #{bbUsuarioLogado.procuraPessoa().nome } !  "/>
+                            <p:commandButton type="button" value="Sair" icon="ui-icon-extlink" onclick="location.href = '#{facesContext.externalContext.requestContextPath}/j_spring_security_logout'" />  
+                        </f:facet>  
+
+
+                    </p:menubar> 
+
+
+                </h:form>                 
+
+                <p:dialog header="Sobre o sistema" widgetVar="dlg3" showEffect="explode" hideEffect="puff" height="200" width="300" maximizable="true" minimizable="true">  
+
+                    <img src="#{facesContext.externalContext.requestContextPath}/resources/images/logo.png"/>
+                    <br />
+                    <h:panelGrid columns="2" cellpadding="1" styleClass="panelSobre" id="grid0" >
+
+                        <h:outputText value="Desenvolvedor: " style="font-weight: bold " />  
+                        <h:outputText value="Diego Arantes" />  
+                        <h:outputText value="E-Mail: " style="font-weight: bold " /> 
+                        <h:outputText value="suporte@absoft.com.br" /> 
+                        <h:outputText value="Telefone: " style="font-weight: bold " /> 
+                        <h:outputText value="(44) 9914-1495" />   
+                    </h:panelGrid>
+
+
+                </p:dialog>  
+
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="30" header="ABSoft - Tecnologia" resizable="true" closable="false" collapsible="false">
+
+            </p:layoutUnit>
+
+<!--            <p:layoutUnit position="west" size="200" header="Esquerda" resizable="true" closable="false" collapsible="true" collapsed="true">
+                <h:outputText value="West unit content." />
+            </p:layoutUnit>-->
+
+            <p:layoutUnit position="center">
+                <ui:insert name="tarefas"></ui:insert>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

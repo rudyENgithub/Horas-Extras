@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tarefas">
+        <h:form>
+            <p:growl id="msg0"/>
+            <p:commandButton value="Novo usuário" action="#{mbUsuario.limpUsuario}" ajax="false" icon="ui-icon-plus"/>
+            <p:dataTable id="idTabela" var="usuario" value="#{mbUsuario.usuarios}"
+                         paginator="true" rows="10" emptyMessage="Nenhum registro encontrado"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                         {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+
+                <f:facet name="header">Lista de Usuários do Sistema</f:facet>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Usuário"/>
+                    </f:facet>
+                    <h:outputText value="#{usuario.usuario}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{usuario.nome}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Permissão"/>
+                    </f:facet>
+                    <h:outputText value="#{usuario.permissao}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações"/>
+                    </f:facet>
+                    <p:commandButton action="#{mbUsuario.editUsuario}"
+                                     value="Editar" image="ui-icon ui-icon-pencil"
+                                     update="@form" ajax="false">
+                        <f:setPropertyActionListener value="#{usuario}" target="#{mbUsuario.usuario}"/>
+                    </p:commandButton>   
+
+                </p:column>
+
+
+
+
+            </p:dataTable>
+
+
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>

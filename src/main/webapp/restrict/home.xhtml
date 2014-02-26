@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"                
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+
+    <ui:define name="tarefas">
+
+        <script>
+            //Função pra tirar numeros x do grafico
+            function customExtender() {
+                this.cfg.highlighter = {
+                    tooltipAxes: 'x'
+                };
+            }
+        </script>
+
+
+        <p:growl id="msg" life="300000"/> 
+
+        <h:form>
+
+            <h:panelGrid columns="3" cellpadding="3" cellspacing="0" styleClass="panelGrid" id="grid3" >
+                <h:outputLabel for="funcionarioSetor" value="Setor:"/>
+                <p:selectOneMenu id="funcionarioSetor" value="#{bbGrafico.setor.idSetor}" disabled="#{bbSetor.campoAtivado}" >
+                    <f:selectItem itemValue="0" itemLabel="Selecione o Setor" />
+                    <f:selectItems value="#{bbSetor.setores}" var="setor" itemValue="#{setor.idSetor}" itemLabel="#{setor.setor}"/>         
+                </p:selectOneMenu>
+
+
+                <p:commandButton value="Atualizar" image="ui-icon ui-icon-refresh" update="@form :grafico"  action="#{bbGrafico.criarGraficoSetor()}" disabled="#{bbSetor.campoAtivado}" />
+
+            </h:panelGrid>
+
+        </h:form>
+
+        <p:barChart id="grafico" value="#{bbGrafico.graficoPorSetor}" legendPosition="ne" extender="customExtender" 
+                    title="Gráfico por Setor" min="0" max="50" style="width:95%; height: 90%" orientation="horizontal" animate="true"/> 
+
+
+    </ui:define>
+
+</ui:composition>

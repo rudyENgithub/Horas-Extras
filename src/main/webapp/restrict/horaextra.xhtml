@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tarefas">
+        <p:fieldset legend="Banco de Horas">
+
+            <h:form>
+                <p:growl id="msg0"/>
+                <p:commandButton value="Novo registro" action="#{mbHora.limpHora}" ajax="false" icon="ui-icon-plus"/>
+
+                <p:commandButton value="Imprimir" type="button" icon="ui-icon-print">  
+                    <p:printer target="idTabela" />  
+                </p:commandButton> 
+
+                <p:dataTable id="idTabela" var="hora" value="#{mbHora.horas2}"
+                             paginator="true" rows="10" emptyMessage="Nenhum registro encontrado"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15,100,200">
+
+                    <p:column sortBy="dataRegistro" width="80">                       
+                        <f:facet name="header">
+                            <h:outputText value="Data"/>
+                        </f:facet>
+                        <h:outputText value="#{hora.dataRegistro}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column filterBy="funcionario.nome" filterMatchMode="contains" width="200">                       
+                        <f:facet name="header">
+                            <h:outputText value="Funcionário"/>
+                        </f:facet>
+                        <h:outputText value="#{hora.funcionario.nome}"/>
+                    </p:column>
+
+                    <p:column filterBy="funcionario.setor.setor" filterMatchMode="contains" width="100">
+                        <f:facet name="header">
+                            <h:outputText value="Setor"/>
+                        </f:facet>
+                        <h:outputText value="#{hora.funcionario.setor.setor}"/>
+                    </p:column>
+
+                    <p:column width="30">
+                        <f:facet name="header">
+                            <h:outputText value="Tipo"/>
+                        </f:facet>
+                        <h:outputText value="#{hora.tipo}"/>
+                    </p:column>
+
+                    <p:column width="50">
+                        <f:facet name="header">
+                            <h:outputText value="Horas "/>
+                        </f:facet>
+                        <h:outputText value="#{hora.tempoMinutos}" converter="converterMinutosHora"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Motivo"/>
+                        </f:facet>
+                        <h:outputText value="#{hora.motivo}"/>
+                    </p:column>
+
+                    <p:column width="60">
+                        <f:facet name="header">
+                            <h:outputText value="Usuário"/>
+                        </f:facet>
+                        <h:outputText value="#{hora.usuario}"/>
+                    </p:column>
+
+
+                </p:dataTable>
+
+            </h:form>
+
+
+        </p:fieldset>
+
+    </ui:define>
+
+</ui:composition>

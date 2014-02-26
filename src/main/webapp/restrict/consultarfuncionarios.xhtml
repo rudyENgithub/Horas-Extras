@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../resources/main.xhtml">
+
+    <ui:define name="tarefas">
+        <h:form>
+            <p:growl id="msg0"/>
+
+            <p:commandButton value="Novo funcionário" action="#{mbFuncionario.limpFuncionario}" ajax="false" icon="ui-icon-plus"/>
+            <p:commandButton action="#{mbHora.detalheHora()}"  value="Detalhar Horas" icon="ui-icon-circle-plus" ajax="false"/>
+
+            <p:commandButton value="Imprimir" type="button" icon="ui-icon-print">  
+                <p:printer target="idTabela" />  
+            </p:commandButton> 
+
+            <p:dataTable id="idTabela" var="funcionario" value="#{mbFuncionario.funcionarios2}"
+                         paginator="true" rows="10" emptyMessage="Nenhum registro encontrado"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                         {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,100">
+                <f:facet name="header">Lista de Funcionários</f:facet>
+
+                <p:column filterBy="nome" filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{funcionario.nome}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Função"/>
+                    </f:facet>
+                    <h:outputText value="#{funcionario.funcao}"/>
+                </p:column>
+
+                <p:column filterBy="setor.setor" filterMatchMode="contains" width="100">
+                    <f:facet name="header">
+                        <h:outputText value="Setor"/>
+                    </f:facet>
+                    <h:outputText value="#{funcionario.setor.setor}"/>
+                </p:column>
+
+                <p:column width="30">
+                    <f:facet name="header">
+                        <h:outputText value="R. Setor"/>
+                    </f:facet>
+                    <h:outputText value="#{funcionario.respSetor}"/>
+                </p:column>
+
+                <p:column width="80">
+                    <f:facet name="header">
+                        <h:outputText value="Banco de Horas (Crédito)"/>
+                    </f:facet>
+
+                    <h:outputText value="#{funcionario.minutosTotais}" style="color: blue" converter="converterMinutosHora"/>
+                </p:column>
+
+                <p:column width="80">
+                    <f:facet name="header">
+                        <h:outputText value="À Compensar (Débito)" />
+                    </f:facet>
+                    <h:outputText value="#{funcionario.minutosNegativos}" style="color: red" converter="converterMinutosHora" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações"/>
+                    </f:facet>
+                    <p:commandButton action="#{mbFuncionario.editFuncionario()}"
+                                     value="Editar" icon="ui-icon-pencil"
+                                     update="@form" ajax="false">
+                        <f:setPropertyActionListener value="#{funcionario}" target="#{mbFuncionario.funcionario}"/>
+                    </p:commandButton>   
+
+
+                    <p:commandButton action="#{mbHora.editHora()}" value="Lançar Horas" icon="ui-icon-clock" ajax="false">
+                        <f:setPropertyActionListener value="#{funcionario}" target="#{mbHora.hora.funcionario}"/>
+
+                    </p:commandButton>
+
+                </p:column>
+
+
+
+
+            </p:dataTable>
+        </h:form>   
+    </ui:define>
+
+</ui:composition>

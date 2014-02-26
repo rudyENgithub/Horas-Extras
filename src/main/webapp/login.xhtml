@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>ABSoft - Login</title>
+        <style>
+            body {
+                background-image: url('#{facesContext.externalContext.requestContextPath}/resources/images/bkg.jpg');
+            }
+
+        </style>
+    </h:head>
+    <h:body onload="dialog.login.j_username.focus()">
+
+
+        <div title="Área Restrita">
+
+            <p:dialog header="Área Restrita"
+                      id="dialog"  
+                      modal="true"
+                      minWidth="400"
+                      width="400"
+                      closable="false"
+                      position="center"
+                      widgetVar="modalLogin"
+                      showEffect="slide" 
+                      draggable="false"
+                      resizable="false"
+                      visible="true">
+
+
+                <form action="j_spring_security_check" method="post" id="login">
+                    <p:growl id="msg" rendered="#{param.erro}" >#{msgs.erroLogin()}</p:growl>
+
+                    <h:panelGrid columns="2" cellpadding="3">
+                        <h:outputLabel for="j_username" value="Usuário: " /> 
+                        <h:inputText id="j_username" required="true"/>
+                        <h:outputLabel for="j_password" value="Senha: " />
+                        <h:inputSecret id="j_password" required="true"/>
+                        <h:commandButton value="Acessar"/>
+                    </h:panelGrid>
+                </form>
+            </p:dialog>  
+        </div>
+
+        <!-- Fim da div conteudo -->
+
+
+    </h:body>
+</html>
