@@ -19,18 +19,19 @@
 
         <div title="Área Restrita">
 
-            <p:dialog header="Área Restrita"
+            <p:dialog header="ABSoft - Área Restrita"
                       id="dialog"  
                       modal="true"
-                      minWidth="400"
-                      width="400"
+                      minWidth="330"
+                      width="330"
                       closable="false"
                       position="center"
                       widgetVar="modalLogin"
                       showEffect="slide" 
                       draggable="false"
                       resizable="false"
-                      visible="true">
+                      visible="true"
+                      >
 
 
                 <form action="j_spring_security_check" method="post" id="login">
@@ -41,6 +42,8 @@
                         <h:inputText id="j_username" required="true"/>
                         <h:outputLabel for="j_password" value="Senha: " />
                         <h:inputSecret id="j_password" required="true"/>
+                        
+                        <h:outputLabel value=""/>
                         <h:commandButton value="Acessar"/>
                     </h:panelGrid>
                 </form>
