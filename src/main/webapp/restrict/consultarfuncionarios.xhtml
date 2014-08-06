@@ -82,7 +82,7 @@
                     </f:facet>
                     <p:commandButton action="#{mbFuncionario.editFuncionario()}"
                                      value="Editar" icon="ui-icon-pencil"
-                                     update="@form" ajax="false">
+                                     update="@form" ajax="true">
                         <f:setPropertyActionListener value="#{funcionario}" target="#{mbFuncionario.funcionario}"/>
                     </p:commandButton>   
 

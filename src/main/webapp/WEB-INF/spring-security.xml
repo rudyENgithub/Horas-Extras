@@ -28,10 +28,10 @@
     </authentication-manager>
     
     <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-        <b:property name="url" value="jdbc:mysql://localhost:3306/hextra" />
+        <b:property name="url" value="jdbc:mysql://192.168.1.222:3306/hextra" />
         <b:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <b:property name="username" value="root" />
-        <b:property name="password" value="" />
+        <b:property name="username" value="suporte" />
+        <b:property name="password" value="setsopocni.1986" />
     </b:bean>
     
     <!-- MAS EXISTEM OUTRAS 2 FORMAS DE SE FAZER ISSO -->
