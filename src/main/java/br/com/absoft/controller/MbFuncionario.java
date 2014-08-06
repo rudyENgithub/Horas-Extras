@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class MbFuncionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class MbFuncionario implements Serializable {
     private List<Funcionario> funcionarios;
 
     private List<Funcionario> funcionarios2;
-    
+
     private InterfaceDAO<Funcionario> funcionarioDAO() {
         InterfaceDAO<Funcionario> funcionarioDAO = new HibernateDAO<Funcionario>(Funcionario.class, FacesContextUtil.getRequestSession());
         return funcionarioDAO;
@@ -70,9 +70,8 @@ public class MbFuncionario implements Serializable {
         funcionarioDAO().remove(funcionario);
         return null;
     }
-    
-    
-        public void verificaSetor() {
+
+    public void verificaSetor() {
         if ("ROLE_ADMIN".equals(new BbUsuarioLogado().procuraPessoa().getPermissao())) {
             funcionarios2 = getFuncionarios();
         } else {
@@ -114,7 +113,5 @@ public class MbFuncionario implements Serializable {
     public void setFuncionarios2(List<Funcionario> funcionarios2) {
         this.funcionarios2 = funcionarios2;
     }
-    
-    
 
 }

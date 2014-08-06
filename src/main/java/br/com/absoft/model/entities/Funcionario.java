@@ -39,6 +39,9 @@ public class Funcionario implements Serializable {
     @Column(name = "MinutosNegativos", nullable = true)
     private Integer MinutosNegativos;
 
+    @Column(name = "Rfid", nullable = true)
+    private Long rfid;
+
     //Muitos para 1
     @ManyToOne(optional = false)
     @ForeignKey(name = "FuncionarioSetor")
@@ -102,6 +105,14 @@ public class Funcionario implements Serializable {
         this.MinutosNegativos = MinutosNegativos;
     }
 
+    public Long getRfid() {
+        return rfid;
+    }
+
+    public void setRfid(Long rfid) {
+        this.rfid = rfid;
+    }
+
     public List<Hora> getHoras() {
         return horas;
     }
@@ -120,8 +131,8 @@ public class Funcionario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + (this.idFuncionario != null ? this.idFuncionario.hashCode() : 0);
+        int hash = 5;
+        hash = 23 * hash + (this.idFuncionario != null ? this.idFuncionario.hashCode() : 0);
         return hash;
     }
 

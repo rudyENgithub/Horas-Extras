@@ -30,10 +30,10 @@
     </context-param> 
 
     <!-- Configurações do tema do PrimeFaces -->
-    <context-param>  
+<!--    <context-param>  
         <param-name>primefaces.THEME</param-name>  
-        <param-value>absoft</param-value>  
-    </context-param>         
+        <param-value>delta</param-value>  
+    </context-param>         -->
     
     <!-- Filtros do Spring  -->
 

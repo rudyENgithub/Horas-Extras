@@ -34,6 +34,14 @@
 
                 <p:column>
                     <f:facet name="header">
+                        <h:outputText value="RFID (C. Ponto)"/>
+                    </f:facet>
+                    <h:outputText value="#{funcionario.rfid}" style="color: darkgreen" />
+                </p:column>
+
+
+                <p:column>
+                    <f:facet name="header">
                         <h:outputText value="Função"/>
                     </f:facet>
                     <h:outputText value="#{funcionario.funcao}"/>

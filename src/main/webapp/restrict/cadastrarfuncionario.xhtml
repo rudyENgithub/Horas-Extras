@@ -30,6 +30,11 @@
                                  required="true" requiredMessage="O campo [Função] é obrigatório"
                                  onkeyup="this.value = this.value.toUpperCase()" />
 
+                    <h:outputLabel for="rfidFuncionario" value="RFID (Cartão):" />
+                    <p:inputText id="rfidFuncionario" size="40" value="#{mbFuncionario.funcionario.rfid}" >
+                        <f:convertNumber integerOnly="true" minIntegerDigits="1" /> 
+                    </p:inputText>
+
 
                     <h:outputLabel for="funcionarioSetor" value="Setor:"/>
                     <p:selectOneMenu id="funcionarioSetor" value="#{mbFuncionario.funcionario.setor.idSetor}" disabled="#{bbSetor.campoAtivado}">

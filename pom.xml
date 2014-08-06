@@ -11,7 +11,7 @@
 
     <properties>
         <spring.version>3.0.5.RELEASE</spring.version>
-        <themes.version>1.0.8</themes.version>
+        <themes.version>1.0.10</themes.version>
         <jsf.version>2.1.7</jsf.version>
         <jstl.version>1.2</jstl.version>
         <mysql.version>5.1.9</mysql.version>
@@ -132,13 +132,6 @@
 
     <dependencies>
         
-        <dependency>
-            <groupId>absoft</groupId>
-            <artifactId>absoft-theme</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        
-        
         
         <dependency>
             <groupId>javax</groupId>
@@ -194,45 +187,17 @@
         <!-- ######## TEMAS DO PRIMEFACES ######### -->        
         <dependency>              
             <groupId>org.primefaces.themes</groupId>  
-            <artifactId>cupertino</artifactId>              
+            <artifactId>delta</artifactId>              
             <version>${themes.version}</version> 
         </dependency> 
-        
-        <dependency>  
-            <groupId>org.primefaces.themes</groupId>  
-            <artifactId>le-frog</artifactId>  
-            <version>${themes.version}</version> 
-        </dependency> 
+ 
 <!--        
         <dependency>  
             <groupId>org.primefaces.themes</groupId>  
             <artifactId>sam</artifactId>  
             <version>${themes.version}</version> 
         </dependency> -->
-        
-        <dependency>  
-            <groupId>org.primefaces.themes</groupId>  
-            <artifactId>pepper-grinder</artifactId>  
-            <version>${themes.version}</version> 
-        </dependency> 
-        
-        <dependency>  
-            <groupId>org.primefaces.themes</groupId>  
-            <artifactId>smoothness</artifactId>  
-            <version>${themes.version}</version> 
-        </dependency>        
-        
-        <dependency>  
-            <groupId>org.primefaces.themes</groupId>  
-            <artifactId>ui-lightness</artifactId>  
-            <version>${themes.version}</version> 
-        </dependency> 
-        
-        <dependency>  
-            <groupId>org.primefaces.themes</groupId>  
-            <artifactId>south-street</artifactId>  
-            <version>${themes.version}</version> 
-        </dependency>
+       
 
         <!-- SLF4J -->
         <dependency>
