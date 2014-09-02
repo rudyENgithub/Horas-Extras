@@ -156,7 +156,7 @@ public class MbHora implements Serializable {
 
     }
 
-    private void deleteHora() {
+    public void deleteHora() {
         horaDAO().remove(hora);
     }
 

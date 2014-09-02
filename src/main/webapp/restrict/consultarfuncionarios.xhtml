@@ -86,6 +86,11 @@
                         <f:setPropertyActionListener value="#{funcionario}" target="#{mbFuncionario.funcionario}"/>
                     </p:commandButton>   
 
+                    <p:commandButton icon="ui-icon-refresh" value="Recalcular" actionListener="#{mbFuncionario.recalcular}" disabled="true">   
+                        <p:confirm header="Confirmação" message="Deseja realmente recalcular todos os lançamentos deste funcionário ?" icon="ui-icon-alert" />
+                        <f:setPropertyActionListener value="#{funcionario}" target="#{mbFuncionario.funcionario}"/>
+                    </p:commandButton>
+
 
                     <p:commandButton action="#{mbHora.editHora()}" value="Lançar Horas" icon="ui-icon-clock" ajax="false">
                         <f:setPropertyActionListener value="#{funcionario}" target="#{mbHora.hora.funcionario}"/>
@@ -98,6 +103,11 @@
 
 
             </p:dataTable>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+            </p:confirmDialog> 
         </h:form>   
     </ui:define>
 

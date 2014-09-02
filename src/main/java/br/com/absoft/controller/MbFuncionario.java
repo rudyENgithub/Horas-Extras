@@ -12,6 +12,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 @ManagedBean
 @RequestScoped
@@ -69,6 +71,33 @@ public class MbFuncionario implements Serializable {
     private String deleteFuncionario() {
         funcionarioDAO().remove(funcionario);
         return null;
+    }
+
+    public void recalcular() {
+
+        /*        
+         Seleciona todos os creditos
+         Seleciona todos os débitos 
+
+         faz Creditos menos Débitos
+
+         Se o valor for menor q zero {
+         Lança o valor em débito 
+         e zera o credito
+         }
+
+         senão{
+         lança o valor em credito 
+         e zera o debito
+         }
+        
+         */
+        Session session = FacesContextUtil.getRequestSession();
+        String hql = "from Hora where IdFuncionario = :func";
+        Query query = session.createQuery(hql);
+        query.setInteger("func", 6);
+        List results = query.list();
+
     }
 
     public void verificaSetor() {

@@ -43,7 +43,7 @@
                 background:#f5f5f5 url(#{facesContext.externalContext.requestContextPath}/resources/images/main_header_pg.png) right top no-repeat;
                 border: 0px solid #F00;
                 margin: 0px auto;
-                
+
             }
 
 
@@ -129,9 +129,9 @@
 
             </p:layoutUnit>
 
-<!--            <p:layoutUnit position="west" size="200" header="Esquerda" resizable="true" closable="false" collapsible="true" collapsed="true">
-                <h:outputText value="West unit content." />
-            </p:layoutUnit>-->
+            <!--            <p:layoutUnit position="west" size="200" header="Esquerda" resizable="true" closable="false" collapsible="true" collapsed="true">
+                            <h:outputText value="West unit content." />
+                        </p:layoutUnit>-->
 
             <p:layoutUnit position="center">
                 <ui:insert name="tarefas"></ui:insert>
@@ -139,6 +139,16 @@
             </p:layoutUnit>
 
         </p:layout>
+
+
+
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <h:outputText value="Aguarde..." style="font-size: 12px" />
+            <br/>
+            <p:graphicImage url="/resources/images/carregando.gif" />
+        </p:dialog>
 
     </h:body>
 
