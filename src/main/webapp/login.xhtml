@@ -15,14 +15,21 @@
         <div class="container">
             <section id="content">
                 <form action="j_spring_security_check" method="post" id="login">
-                    <p:growl id="msg" rendered="#{param.erro}" >#{msgs.erroLogin()}</p:growl>
+
+
+
                     <h1>Horas Extras</h1>
+                    <p:messages id="msg" rendered="#{param.erro}">#{msgs.erroLogin()}</p:messages>
                     <div>
+
                         <p:inputText id="j_username" required="true" placeholder="Usuário" onkeyup="this.value = this.value.toUpperCase()"/>
                     </div>
                     <div>
                         <p:password id="j_password" required="true" placeholder="Senha"/>
                     </div>
+
+
+
                     <div>
                         <h:commandButton value="Acessar"/>
                         <a href="#">Esqueceu a senha ?</a>
