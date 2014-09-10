@@ -7,50 +7,33 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>ABSoft - Login</title>
-        <style>
-            body {
-                background-image: url('#{facesContext.externalContext.requestContextPath}/resources/images/bkg.jpg');
-            }
-
-        </style>
+        <link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/style.css" />
     </h:head>
-    <h:body onload="dialog.login.j_username.focus()">
+    <h:body onload="login.j_username.focus()">
 
 
-        <div title="Área Restrita">
-
-            <p:dialog header="ABSoft - Área Restrita"
-                      id="dialog"  
-                      modal="true"
-                      minWidth="330"
-                      width="330"
-                      closable="false"
-                      position="center"
-                      widgetVar="modalLogin"
-                      showEffect="slide" 
-                      draggable="false"
-                      resizable="false"
-                      visible="true"
-                      >
-
-
+        <div class="container">
+            <section id="content">
                 <form action="j_spring_security_check" method="post" id="login">
                     <p:growl id="msg" rendered="#{param.erro}" >#{msgs.erroLogin()}</p:growl>
-
-                    <h:panelGrid columns="2" cellpadding="3">
-                        <h:outputLabel for="j_username" value="Usuário: " /> 
-                        <h:inputText id="j_username" required="true"/>
-                        <h:outputLabel for="j_password" value="Senha: " />
-                        <h:inputSecret id="j_password" required="true"/>
-                        
-                        <h:outputLabel value=""/>
+                    <h1>Horas Extras</h1>
+                    <div>
+                        <p:inputText id="j_username" required="true" placeholder="Usuário" onkeyup="this.value = this.value.toUpperCase()"/>
+                    </div>
+                    <div>
+                        <p:password id="j_password" required="true" placeholder="Senha"/>
+                    </div>
+                    <div>
                         <h:commandButton value="Acessar"/>
-                    </h:panelGrid>
+                        <a href="#">Esqueceu a senha ?</a>
+                        <a href="#">Registrar</a>
+                    </div>
                 </form>
-            </p:dialog>  
+                <div class="button">
+                    <!--	<a href="#">Download source file</a>-->
+                </div>
+            </section>
         </div>
-
-        <!-- Fim da div conteudo -->
 
 
     </h:body>
