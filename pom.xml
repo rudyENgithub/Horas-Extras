@@ -181,7 +181,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>4.0</version> <!--       Versão Recente 4.0-->
+            <version>5.0</version> <!--       Versão Recente 4.0-->
         </dependency>
         
         <!-- ######## TEMAS DO PRIMEFACES ######### -->        
