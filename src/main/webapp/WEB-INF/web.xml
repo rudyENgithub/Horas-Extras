@@ -8,8 +8,6 @@
     
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-        <!--        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.htm</welcome-file>-->
     </welcome-file-list>
     
     <!-- Duração da sessão -->
@@ -27,13 +25,7 @@
         <param-value>
             /WEB-INF/spring-security.xml
         </param-value>
-    </context-param> 
-
-    <!-- Configurações do tema do PrimeFaces -->
-<!--    <context-param>  
-        <param-name>primefaces.THEME</param-name>  
-        <param-value>delta</param-value>  
-    </context-param>         -->
+    </context-param>         
     
     <!-- Filtros do Spring  -->
 
@@ -89,14 +81,4 @@
         <url-pattern>/primefaces_resource/*</url-pattern>
     </servlet-mapping>
     
-    <!-- Filtros de Upload -->
-    
-<!--    <filter>  
-        <filter-name>PrimeFaces FileUpload Filter</filter-name>  
-        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>  
-    </filter>  
-    <filter-mapping>  
-        <filter-name>PrimeFaces FileUpload Filter</filter-name>  
-        <servlet-name>Faces Servlet</servlet-name>  
-    </filter-mapping> -->
 </web-app>

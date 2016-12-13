@@ -28,9 +28,9 @@
     </authentication-manager>
     
     <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-        <b:property name="url" value="jdbc:mysql://127.0.0.1/hextra" />
+        <b:property name="url" value="jdbc:mysql://192.168.1.7/hextra" />
         <b:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <b:property name="username" value="root" />
+        <b:property name="username" value="sistema" />
         <b:property name="password" value="" />
     </b:bean>
     
